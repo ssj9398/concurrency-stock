@@ -43,3 +43,18 @@ docker pull --platform linux/x86_64 mysql
 5. java synchronized 문제점
 - 서버가 1대일때는 되는듯싶으나 여러대의 서버를 사용하게되면 사용하지 않았을때와 동일한 문제가 발생
 - 인스턴스단위로 thread-safe 이 보장이 되고, 여러서버가 된다면 여러개의 인스턴스가 있는것과 동일하기때문
+
+### 해결방법
+#### Database를 활용하여 레이스컨디션 해결해보기
+1. Optimistic Lock
+- lock 을 걸지않고 문제가 발생할 때 처리
+- 대표적으로 version column 을 만들어서 해결하는 방법
+2. Pessimistic Lock (exclusive lock)
+- 다른 트랜잭션이 특정 row 의 lock 을 얻는것을 방지
+- A 트랜잭션이 끝날때까지 기다렸다가 B 트랜잭션이 lock 을 획득
+- 특정 row 를 update 하거나 delete 할 수 있습니다.
+- 일반 select 는 별다른 lock 이 없기때문에 조회는 가능합니다.
+- row or table 단위로 건다
+3. named Lock 활용하기
+- 이름과 함께 lock을 획득 해당 lock 은 다른세션에서 획득 및 해제가 불가능
+- 메타데이터의 마킹을 하는 방법
