@@ -33,3 +33,9 @@ docker pull --platform linux/x86_64 mysql
 
 3. Race Condition이 발생
 - 하나의 쓰레드 완료 후 다른쓰레드가 접근할수 있게 해결 할수있음
+
+4. synchronized
+- 손쉽게 하나의 쓰레드만 접근하게 할수있음
+- 그래도 안됨 이유는 @Transactional 어노테이션 때문
+    - 수량 감소 method호출 후 업데이트를 하기 직전에 다른쓰레드가 해당 method에 접근이 가능해진다.
+    - 쉽게설명하면 수량감소method를 호출 후 udpate쿼리가 날아가기전 다른 쓰레드가 접근 할 수 있어서
