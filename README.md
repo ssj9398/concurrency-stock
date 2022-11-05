@@ -55,6 +55,18 @@ docker pull --platform linux/x86_64 mysql
 - 특정 row 를 update 하거나 delete 할 수 있습니다.
 - 일반 select 는 별다른 lock 이 없기때문에 조회는 가능합니다.
 - row or table 단위로 건다
+#### 장점
+- 충돌이 빈번하게 일어난다면 Optimistic Lock보다 성능좋다.
+- 락을 통해 Update를 제어하기 때문에 데이터 정합성이 어느정도 보장된다.
+#### 단점
+- 별도의 락을 걸기때문에 성능감소가 있을 수 있다.
+
 3. named Lock 활용하기
 - 이름과 함께 lock을 획득 해당 lock 은 다른세션에서 획득 및 해제가 불가능
 - 메타데이터의 마킹을 하는 방법
+
+```
+https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_exclusive_lock
+https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html
+https://dev.mysql.com/doc/refman/8.0/en/locking-functions.html
+```
