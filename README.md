@@ -49,6 +49,11 @@ docker pull --platform linux/x86_64 mysql
 1. Optimistic Lock
 - lock 을 걸지않고 문제가 발생할 때 처리
 - 대표적으로 version column 을 만들어서 해결하는 방법
+#### 장점
+- Optimistic의 경우 별도의 락을 잡지않으므로 Pessimistic보다 성능상 이점이 있다.
+#### 단점
+- update 실패했을경우 재시도 해주는 로직을 직접 개발자가 작성해주어야 한다.
+- 충돌이 잦은경우 Pessimistic이 더 좋을 수 있다.
 2. Pessimistic Lock (exclusive lock)
 - 다른 트랜잭션이 특정 row 의 lock 을 얻는것을 방지
 - A 트랜잭션이 끝날때까지 기다렸다가 B 트랜잭션이 lock 을 획득
