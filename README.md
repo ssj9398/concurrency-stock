@@ -69,7 +69,11 @@ docker pull --platform linux/x86_64 mysql
 3. named Lock 활용하기
 - 이름과 함께 lock을 획득 해당 lock 은 다른세션에서 획득 및 해제가 불가능
 - 메타데이터의 마킹을 하는 방법
-
+- 주로 분산락을 구현할때 사용
+#### 장점
+- PessimisticLock은 타임아웃을 구현하기 굉장히 힘든데 이건 손쉽게 구현할수있다.
+#### 단점
+- 트랜잭션 종료시 락해제와 세선관리를 잘해줘야한다.
 ```
 https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_exclusive_lock
 https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html
