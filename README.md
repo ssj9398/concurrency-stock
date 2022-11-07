@@ -79,3 +79,10 @@ https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_exclusive_lock
 https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html
 https://dev.mysql.com/doc/refman/8.0/en/locking-functions.html
 ```
+
+### Redis
+1. Lettuce
+- setnx 명령어를 활용하여 분산락 구현
+- spin lock 방식
+2. Redisson
+- pub-sub기반으로 Lock 구현 제공
