@@ -1,5 +1,5 @@
-## 환경세팅
-
+## mysql
+### 환경세팅
 1. mysql 설치 및 실행
 ```
 docker pull mysql
@@ -80,9 +80,16 @@ https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html
 https://dev.mysql.com/doc/refman/8.0/en/locking-functions.html
 ```
 
-### Redis
+## Redis
 1. Lettuce
 - setnx 명령어를 활용하여 분산락 구현
 - spin lock 방식
 2. Redisson
 - pub-sub기반으로 Lock 구현 제공
+
+### 환경세팅
+```
+docker pull redis
+
+docker run --name myredis -d -p 6379:6379 redis
+```
