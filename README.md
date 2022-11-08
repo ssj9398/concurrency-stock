@@ -92,4 +92,18 @@ https://dev.mysql.com/doc/refman/8.0/en/locking-functions.html
 docker pull redis
 
 docker run --name myredis -d -p 6379:6379 redis
+
+docker redis-cli 접속
+
+docker ps로 컨테이너 확인 후
+
+docker exec -it CONTAINER ID
+
+간단한 생성 삭제
+setnx (key) (value)
+del (key)
 ```
+1. Lettuce Lock
+- 구현이 간단하다
+- 스핀락 방식이기때문에 레디스에 부하를 줄 수 있다.
+  - 그래서 Thread.sleep을 활용하여서 락 획득 재시도간에 텀을 둬야한다.
